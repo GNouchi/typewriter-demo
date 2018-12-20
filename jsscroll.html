@@ -47,11 +47,11 @@ display: inline;
 			// append sentences[i] one character at a time 				
 			el.innerHTML = el.innerHTML+sentences[word_counter][character_counter++];
 			if(character_counter == sentences[word_counter].length+1) {
+				word_counter++;
 				resetHTML();
 				resetCursor();
-				word_counter++;
-				replay(word_counter);		
 			}
+			if(word_counter >= sentences.length){word_counter = 0;}
 		}
 
 		//reset character(cursor) position
@@ -65,13 +65,6 @@ display: inline;
 			el.innerHTML = '';
 			console.log('resethtml done ');			
 		}
-		//if we're displaying the last word, go back to the first word -- probably take this out for actual implementation
-		function replay(wordcnt){
-			if(wordcnt == sentences.length){wordcnt = 0;}
-			console.log('replay evaluated');			
-		}
-
-
 		// execute main function in async interval
 		setInterval(updateText,200);
 	</script>

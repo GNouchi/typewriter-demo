@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Javascript Typewriter Demo</title>
+<style>
+body {
+background-color:black;
+font-family: monospace;
+color:white;
+font-size:50px;
+text-align: center;
+margin-top:20%;
+}
+#magic{
+color: #777;
+border-right: 1px solid #777;
+padding-right: 7px;
+display: inline;
+}
+</style>
+</head>
+
+<body>
+	Need to <div id="magic"></div>
+</body>
+ 
+	
+<!-- only JS below  -->
+  <script>
+//   sentences = Array of strings
+        var sentences = 
+        [
+		"port this into Angular.", 
+		"get better at typescript.", 
+		"figure out how to use node with firestore.", 
+		"take out the trash.", 
+		"sleep like a normal person."
+		];
+		
+// init vals
+		var el = document.getElementById('magic');
+		var	word_counter = 0;
+		var	character_counter = 0;
+		var pause=false;
+
+
+        function updateText() {
+			// append sentences[i] one character at a time 				
+			el.innerHTML = el.innerHTML+sentences[word_counter][character_counter++];
+			if(character_counter == sentences[word_counter].length+1) {
+				resetHTML();
+				resetCursor();
+				word_counter++;
+				replay(word_counter);		
+			}
+		}
+
+		//reset character(cursor) position
+		function resetCursor(){
+			character_counter = 0;	
+			console.log('resetcursor done');
+			
+		}
+		//set the html to be blank
+		function resetHTML(){
+			el.innerHTML = '';
+			console.log('resethtml done ');			
+		}
+		//if we're displaying the last word, go back to the first word -- probably take this out for actual implementation
+		function replay(wordcnt){
+			if(wordcnt == sentences.length){wordcnt = 0;}
+			console.log('replay evaluated');			
+		}
+
+
+		// execute main function in async interval
+		setInterval(updateText,200);
+	</script>
+</html>
